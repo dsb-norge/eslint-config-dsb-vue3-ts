@@ -1,0 +1,45 @@
+name: 'CI/CD'
+
+on:
+  # Run on main branch for PR default events + closed event
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, closed]
+  # Allow manual build
+  workflow_dispatch:
+
+# Only one workflow at a time for a given branch or tag
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  ci-cd:
+    uses: dsb-norge/github-actions/.github/workflows/ci-cd-default.yml@v1
+    secrets:
+      # All secrets needed are passed to the called workflow here
+      maven-repo-username: ${{ secrets.JENKINS_REPO_USERNAME }}
+      maven-repo-token: ${{ secrets.JENKINS_REPO_TOKEN }}
+      sonarqube-token: ${{ secrets.SONAR_TOKEN }}
+      jasypt-password: ${{ secrets.JASYPT_LOCAL_ENCRYPTOR_PASSWORD }}
+      acr-username: ${{ secrets.AZ_CR_USER }}
+      acr-password: ${{ secrets.AZ_CR_SECRET }}
+      github-repo-token: ${{ secrets.GITHUB_TOKEN }}
+      app-config-repo-token: ${{ secrets.GITOPS_TAG_BUMPER_TOKEN }}
+      pr-deploy-aks-creds: ${{ secrets.KUBERNETES_ADMIN }}
+      acr-service-principal: ${{ secrets.AZ_CR_SP }}
+    with:
+      # Github requires inputs of type string, ultimately this will be parsed as yaml array
+      apps: |
+        - application-name: template    <---- REPLACE THIS!
+          application-source-path: .
+          pr-deploy-additional-helm-values:
+            parameters:
+              dsb-spring-boot.database_container.enabled: true
+              # Dollar sign and leading curly bracket must be escaped for spring. Ie. '${VAR}' becomes '\$\{VAR}'
+              dsb-spring-boot.config.spring.datasource.url: 'jdbc:sqlserver://\$\{DATABASE_CONTAINER_HOST_AND_PORT};database=\$\{DATABASE_CONTAINER_DATABASE}'
+              dsb-spring-boot.config.spring.datasource.username: '\$\{DATABASE_CONTAINER_USER}'
+              dsb-spring-boot.config.spring.datasource.password: '\$\{DATABASE_CONTAINER_PASSWORD}'
+              dsb-spring-boot.config.spring.r2dbc.url: 'r2dbc:pool:sqlserver://\$\{DATABASE_CONTAINER_HOST_AND_PORT}/\$\{DATABASE_CONTAINER_DATABASE}'

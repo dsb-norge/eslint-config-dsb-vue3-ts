@@ -1,0 +1,27 @@
+name: 'Autobump deps'
+
+on:
+  # Allow manual build
+  workflow_dispatch:
+  # Trigger at set times, e.g. '42 2 * * 1-5' triggers every weekday at 02:42 UTC
+  # NOTE: Runners are not available in weekends p.t. so should run weekdays only.
+  schedule:
+    - cron: '42 2 * * 1-5'
+
+# a single branch/tag should only run one workflow at a time
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  autobump:
+    name: Bump versions
+    uses: dsb-norge/github-actions/.github/workflows/update-deps-and-create-pr.yml@v1
+    secrets:
+      maven-repo-username: ${{ secrets.JENKINS_REPO_USERNAME }}
+      maven-repo-token: ${{ secrets.JENKINS_REPO_TOKEN }}
+      gitops-tag-bumper-token: ${{ secrets.GITOPS_TAG_BUMPER_TOKEN }}
+    with:
+      # Note: 'application-name' becomes part of the branch name for the bumping. If you have more than one
+      # maven app within the same github repos, each app must be listed here with a unique 'application-name'.
+      apps: |
+        - application-name: template    <---- REPLACE THIS!
+          application-source-path: ./   <---- ADJUST AS NEEDED
