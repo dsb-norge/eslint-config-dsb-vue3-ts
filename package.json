@@ -1,0 +1,44 @@
+{
+  "name": "@dsb-norge/eslint-config-dsb-vue3-ts",
+  "version": "1.0.0",
+  "description": "ESLint standard config for Vue.js version 3 projects with Typescript support",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "eslintconfig",
+    "typescript"
+  ],
+  "scripts": {
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "author": "Chris Neumann Ruud <chris.ruud@dsb.no>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dsb-norge/eslint-config-dsb-vue3-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dsb-norge/eslint-config-dsb-vue3-ts/issues"
+  },
+  "homepage": "https://github.com/dsb-norge/eslint-config-dsb-vue3-ts",
+  "peerDependencies": {
+    "@rushstack/eslint-patch": ">=1.1.3 <2",
+    "@vue/eslint-config-typescript": ">=10.0.0 <11",
+    "@vue/tsconfig": ">=0.1.3 <1",
+    "eslint": ">=8.18.0 <9",
+    "eslint-plugin-cypress": ">=2.12.1 <3",
+    "eslint-plugin-vue": ">=8.7.1 < 9"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "1.1.3",
+    "@vue/eslint-config-typescript": "10.0.0",
+    "@vue/tsconfig": "0.1.3",
+    "eslint": "8.18.0",
+    "eslint-plugin-cypress": "2.12.1",
+    "eslint-plugin-vue": "8.7.1"
+  }
+}
