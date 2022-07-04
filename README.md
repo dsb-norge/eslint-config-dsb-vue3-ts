@@ -5,8 +5,9 @@
 
 ## Installation
 
-The default export contains all default [ESLint rules](https://github.com/standard/eslint-config-standard) for [JavaScript Standard Style](http://standardjs.com/) , including
-the [recommended ruleset for Vue](https://eslint.vuejs.org/), and the ones listed in the [rules section](https://github.com/dsb-norge/eslint-config-dsb-vue3-ts/blob/master/index.js) .
+The default export contains all default [ESLint rules](https://github.com/standard/eslint-config-standard) for [Vue3 TypeScript](https://github.com/vuejs/eslint-config-typescript) , including
+the [recommended ruleset for Vue](https://eslint.vuejs.org/), the [opinionated recommended ruleset for TypeScript](https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/CONFIGS.md)
+and the ones listed in the [rules section](https://github.com/dsb-norge/eslint-config-dsb-vue3-ts/blob/master/index.js) .
 
 Note: It requires some peerDependencies as well.
 
