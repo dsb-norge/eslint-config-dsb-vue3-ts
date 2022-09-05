@@ -29,14 +29,15 @@
     "@rushstack/eslint-patch": ">=1.1.4 <2",
     "@vue/eslint-config-typescript": ">=10.0.0 <12",
     "@vue/tsconfig": ">=0.1.3 <1",
-    "eslint": ">=8.18.0 <9",
-    "eslint-plugin-vue": ">=9.1.1 < 10"
+    "eslint": ">=8.23.0 <9",
+    "eslint-plugin-vue": ">=9.4.0 < 10"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "1.1.4",
     "@vue/eslint-config-typescript": "11.0.0",
     "@vue/tsconfig": "0.1.3",
-    "eslint": "8.18.0",
-    "eslint-plugin-vue": "9.1.1"
+    "eslint": "8.23.0",
+    "eslint-plugin-vue": "9.4.0",
+    "eslint-plugin-vuejs-accessibility": "^1.2.0"
   }
 }

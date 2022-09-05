@@ -3,10 +3,14 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
+  plugins: [
+    'vuejs-accessibility'
+  ],
   extends: [
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
-    '@vue/eslint-config-typescript/recommended'
+    '@vue/eslint-config-typescript/recommended',
+    'plugin:vuejs-accessibility/recommended'
   ],
   env: {
     'vue/setup-compiler-macros': true,
