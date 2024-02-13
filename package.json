@@ -20,7 +20,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git@github.com:dsb-norge/eslint-config-dsb-vue3-ts.git"
+    "url": "git+ssh://git@github.com/dsb-norge/eslint-config-dsb-vue3-ts.git"
   },
   "bugs": {
     "url": "https://github.com/dsb-norge/eslint-config-dsb-vue3-ts/issues"
