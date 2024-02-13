@@ -2,11 +2,12 @@
 require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
-  root: true,
-  plugins: [
-    'vuejs-accessibility',
-    '@stylistic'
-  ],
+  env: {
+    'vue/setup-compiler-macros': true,
+    'node': true,
+    'browser': true,
+    'es2021': true
+  },
   extends: [
     'plugin:@stylistic/recommended-extends',
     'plugin:vue/vue3-recommended',
@@ -15,18 +16,34 @@ module.exports = {
     'plugin:vuejs-accessibility/recommended',
     'plugin:@stylistic/disable-legacy'
   ],
-  env: {
-    'vue/setup-compiler-macros': true,
-    'node': true,
-    'browser': true,
-    'es2021': true
-  },
   ignorePatterns: [ 'dist/**' ],
+  parserOptions: {
+    requireConfigFile: false,
+    sourceType: 'module',
+    ecmaVersion: 2021
+  },
+  plugins: [
+    'vuejs-accessibility',
+    '@stylistic'
+  ],
+  root: true,
   rules: {
     '@stylistic/array-bracket-spacing': [ 'error', 'always' ],
+    '@stylistic/arrow-parens': [ 'error', 'as-needed' ],
     '@stylistic/brace-style': [ 'error', '1tbs', { allowSingleLine: true } ],
     '@stylistic/comma-dangle': [ 'error', 'never' ],
-    '@stylistic/indent': [ 'error', 2 ],
+    '@stylistic/indent': [ 'error', 2, { SwitchCase: 1 } ],
+    '@stylistic/member-delimiter-style': [ 'error', {
+      multiline: {
+        delimiter: 'none',
+        requireLast: false
+      },
+      singleline: {
+        delimiter: 'semi',
+        requireLast: false
+      },
+      multilineDetection: 'brackets'
+    } ],
     '@stylistic/object-curly-spacing': [ 'error', 'always' ],
     '@stylistic/padded-blocks': [ 'error', 'never' ],
     '@stylistic/quote-props': [ 'error', 'consistent-as-needed' ],
@@ -48,10 +65,5 @@ module.exports = {
     'vue/space-infix-ops': 'error',
     'vue/space-unary-ops': 'error',
     'vue/v-on-function-call': 'error'
-  },
-  parserOptions: {
-    requireConfigFile: false,
-    sourceType: 'module',
-    ecmaVersion: 2021
   }
 }
