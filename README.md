@@ -108,7 +108,37 @@ export default [
   }
 ]
 
-
 ```
 
-#### With cypress information
+#### With cypress config
+Same as over, but adding cypress for only the cypress files. Note the spread operator since we are wrapping this in a separate object,
+this is different from what is described in the [cypress documentation](https://github.com/cypress-io/eslint-plugin-cypress/blob/cef4c0a8658595ede86eb8fde828f9ecb37b1bbf/FLAT-CONFIG.md).
+
+See [eslint documentation](https://eslint.org/docs/latest/use/configure/combine-configs#apply-a-config-object-to-a-subset-of-files) for more information.
+
+```js
+// eslint.config.mjs
+import dsbConfig from '@dsb-norge/eslint-config-dsb-vue3-ts'
+import pluginCypress from 'eslint-plugin-cypress/flat'
+
+
+export default [
+  ...dsbConfig,
+  {
+    name: 'Cypress',
+    ...pluginCypress.configs.recommended,
+    files: [
+      '**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}',
+      'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}'
+    ],
+    rules: {
+      // your custom overrides for cypress here
+    }
+  },
+  {
+    rules: {
+      // your custom overrides here
+    }
+  }
+]
+```
