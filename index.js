@@ -8,6 +8,7 @@ export default [
   ...pluginVueA11y.configs['flat/recommended'],
   ...vueTsEslintConfig(),
   stylistic.configs['recommended-flat'],
+  stylistic.configs['disable-legacy'],
   {
     name: 'Overrides',
     rules: {
@@ -48,5 +49,9 @@ export default [
       'vue/space-infix-ops': 'error',
       'vue/space-unary-ops': 'error'
     }
+  },
+  {
+    name: 'Ignore',
+    ignores: [ '**/dist/' ]
   }
 ]
