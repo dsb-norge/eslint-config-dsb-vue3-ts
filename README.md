@@ -9,57 +9,106 @@ The default export contains all default ESLint rules for [Vue3 TypeScript](https
 the [recommended ruleset for Vue](https://eslint.vuejs.org/), the [opinionated recommended ruleset for TypeScript](https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/CONFIGS.md)
 and the ones listed in the [rules section](https://github.com/dsb-norge/eslint-config-dsb-vue3-ts/blob/master/index.js) .
 
-Note: It requires some peerDependencies as well.
-
 Install the package with:
 
 ```sh
-npx install-peerdeps --dev @dsb-norge/eslint-config-dsb-vue3-ts
-```
- 
-Then install the correct versions of each peerDependency package, which are
-listed by the command:
-
-```sh
-npm info "@dsb-norge/eslint-config-dsb-vue3-ts@latest" peerDependencies
+npm install --dev @dsb-norge/eslint-config-dsb-vue3-ts
 ```
 
 ## Usage
 
-Now add the config to either your `package.json`:
-
-```json
-{
-  "eslintConfig": {
-    "extends": "@dsb-norge/dsb-vue3-ts"
-  }
-}
-```
-
-or to your `.eslintrc`:
-
-```json
-{
-  "extends": "@dsb-norge/dsb-vue3-ts"
-}
-```
-
-or to your `.eslintrc.js`:
+Now add the config to your`eslint.config.mjs` file:
 
 ```js
-module.exports = {
-  extends: '@dsb-norge/dsb-vue3-ts'
-}
+import dsbConfig from '@dsb-norge/eslint-config-dsb-vue3-ts'
+
+export default [
+  ...dsbConfig
+]
 ```
 
 ## Assumptions
 
 This ESLint configuration comes with some fundamental assumptions:
 
+- eslint 9 and flat config
 - vue.js 3 and/or node environment
 - browser and/or node environment
 - vite
 - TypeScript
 
 Despite some assumptions, [you can easily overwrite, extend and unset
-rules and any other setting in your custom eslint config](https://eslint.org/docs/user-guide/configuring).
+rules and any other setting in your custom eslint config](https://eslint.org/docs/latest/use/configure/).
+
+
+## Migrate from version 2.x to 3.x (eslint 8 to eslint 9)
+
+### Package cleanup
+
+- If installed, remove packages that are no longer needed in local package.json:
+```sh
+npm uninstall -D @rushstack/eslint-patch @stylistic/eslint-plugin @vue/eslint-config-typescript eslint-plugin-vue eslint-plugin-vuejs-accessibility
+```
+- The `eslint` library must be of version 9 or higher. If you are using `eslint` 8, you must upgrade to version 9 or higher.
+
+
+```sh
+npm install eslint@latest
+```
+
+
+### package.json scripts
+
+- Update the scripts
+
+```
+ "scripts": {
+    ...,
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  }
+```
+
+### Configuration
+Configuration now lives in `eslint.config.mjs` instead of `.eslintrc.js`.
+
+from:
+
+```js
+// .eslintrc.js
+/* eslint-env node */
+require('@rushstack/eslint-patch/modern-module-resolution')
+
+module.exports = {
+  root: true,
+  extends: [
+    '@dsb-norge/dsb-vue3-ts'
+  ],
+  rules: {
+    indent: [ 'error', 2, { SwitchCase: 1 } ]
+  },
+  parserOptions: {
+    ecmaVersion: 'latest'
+  }
+}
+```
+
+to
+
+```js
+// eslint.config.mjs
+import dsbConfig from '@dsb-norge/eslint-config-dsb-vue3-ts'
+
+export default [
+  ...dsbConfig,
+  {
+    rules: {
+      // your custom overrides here
+    }
+  }
+]
+
+
+```
+
+#### With cypress information
