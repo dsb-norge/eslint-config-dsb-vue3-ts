@@ -6,11 +6,7 @@ import stylistic from '@stylistic/eslint-plugin'
 export default [
   ...pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
-  ...vueTsEslintConfig().map(config => ({
-    ...config,
-    files: [ '**/*.ts', '**/*.mts', '**/*.vue' ],
-    ignores: [ '**/dist/**' ]
-  })),
+  ...vueTsEslintConfig(),
   stylistic.configs['recommended-flat'],
   stylistic.configs['disable-legacy'],
   {
