@@ -4,6 +4,10 @@ import vueTsEslintConfig from '@vue/eslint-config-typescript'
 import stylistic from '@stylistic/eslint-plugin'
 
 export default [
+  {
+    name: 'Ignore',
+    ignores: [ '**/dist/', '**/dev-dist/' ]
+  },
   ...pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
   ...vueTsEslintConfig(),
@@ -49,9 +53,5 @@ export default [
       'vue/space-infix-ops': 'error',
       'vue/space-unary-ops': 'error'
     }
-  },
-  {
-    name: 'Ignore',
-    ignores: [ '**/dist/' ]
   }
 ]
