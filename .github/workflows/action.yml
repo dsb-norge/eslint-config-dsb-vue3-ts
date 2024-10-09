@@ -22,7 +22,8 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci --ignore-scripts
 
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
+# not compatible with eslint 9 as of v2
+#      - name: Run linters
+#        uses: wearerequired/lint-action@v2
+#        with:
+#          eslint: true
