@@ -129,7 +129,8 @@ export default [
     ...pluginCypress.configs.recommended,
     files: [
       '**/__tests__/*.{cy,spec}.{js,ts,jsx,tsx}',
-      'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}'
+      'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
+      'cypress/support/**/*.{js,ts,jsx,tsx}'
     ],
     rules: {
       // your custom overrides for cypress here
