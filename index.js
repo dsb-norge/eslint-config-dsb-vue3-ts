@@ -51,7 +51,15 @@ export default [
       'vue/no-empty-component-block': 'error',
       'vue/object-curly-spacing': [ 'error', 'always' ],
       'vue/space-infix-ops': 'error',
-      'vue/space-unary-ops': 'error'
+      'vue/space-unary-ops': 'error',
+      'vue/require-typed-ref': 'error',
+      'vue/block-order': [ 'error', {
+        order: [ 'script', 'template', 'style' ]
+      } ],
+      'vue/define-emits-declaration': [ 'error', 'type-based' ],
+      'vue/define-props-declaration': [ 'error', 'type-based' ],
+      'vue/no-ref-object-reactivity-loss': 'error',
+      'vue/no-restricted-call-after-await': 'error'
     }
   }
 ]
