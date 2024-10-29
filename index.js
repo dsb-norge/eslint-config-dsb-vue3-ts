@@ -59,9 +59,9 @@ export default [
       'vue/define-emits-declaration': [ 'error', 'type-based' ],
       'vue/define-props-declaration': [ 'error', 'type-based' ],
       'vue/no-ref-object-reactivity-loss': 'error',
-      'vue/no-restricted-call-after-await': ['error',
-        { 'module': 'vue-i18n', 'path': 'useI18n' },
-        { 'module': 'quasar', 'path': 'useQuasar' },
+      'vue/no-restricted-call-after-await': [ 'error',
+        { module: 'vue-i18n', path: 'useI18n' },
+        { module: 'quasar', path: 'useQuasar' }
       ]
     }
   }
