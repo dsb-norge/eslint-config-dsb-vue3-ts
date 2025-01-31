@@ -1,16 +1,20 @@
 import pluginVue from 'eslint-plugin-vue'
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
-import vueTsEslintConfig from '@vue/eslint-config-typescript'
+import {
+  defineConfigWithVueTs,
+  vueTsConfigs
+} from '@vue/eslint-config-typescript'
 import stylistic from '@stylistic/eslint-plugin'
 
-export default [
+export default defineConfigWithVueTs(
+  pluginVue.configs['flat/essential'],
+  vueTsConfigs.recommended,
   {
     name: 'Ignore',
     ignores: [ '**/dist/', '**/dev-dist/' ]
   },
   ...pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
-  ...vueTsEslintConfig(),
   stylistic.configs['recommended-flat'],
   stylistic.configs['disable-legacy'],
   {
@@ -65,4 +69,4 @@ export default [
       ]
     }
   }
-]
+)
