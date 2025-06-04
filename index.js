@@ -5,6 +5,7 @@ import {
   vueTsConfigs
 } from '@vue/eslint-config-typescript'
 import stylistic from '@stylistic/eslint-plugin'
+import globals from 'globals'
 
 export default defineConfigWithVueTs(
   pluginVue.configs['flat/essential'],
@@ -67,6 +68,11 @@ export default defineConfigWithVueTs(
         { module: 'vue-i18n', path: 'useI18n' },
         { module: 'quasar', path: 'useQuasar' }
       ]
+    },
+    languageOptions: {
+      globals: {
+        ...globals.browser
+      }
     }
   }
 )
