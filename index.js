@@ -16,7 +16,7 @@ export default defineConfigWithVueTs(
   },
   ...pluginVue.configs['flat/recommended'],
   ...pluginVueA11y.configs['flat/recommended'],
-  stylistic.configs['recommended-flat'],
+  stylistic.configs['recommended'],
   stylistic.configs['disable-legacy'],
   {
     name: 'Overrides',
